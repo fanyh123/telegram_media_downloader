@@ -198,7 +198,7 @@ async def download_media(
                                                                     'move',
                                                                     download_path,
                                                                     f"{drive_name}:{{{drive_id}}}/酒店(1650704347)/",
-                                                                    '--ignore-existing --buffer-size 6M',
+                                                                    '--ignore-existing', '--buffer-size 6M',
                                                                     stdout=asyncio.subprocess.DEVNULL)
                         await proc.wait()
                         if proc.returncode == 0:
