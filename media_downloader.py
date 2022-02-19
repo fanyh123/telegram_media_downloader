@@ -197,12 +197,12 @@ async def download_media(
                         proc = await asyncio.create_subprocess_exec('fclone',
                                                                     'move',
                                                                     download_path,
-                                                                    f"{drive_name}:{{{drive_id}}}/{download_path}",
+                                                                    f"{drive_name}:{{{drive_id}}}/酒店(1650704347)/",
                                                                     '--ignore-existing',
                                                                     stdout=asyncio.subprocess.DEVNULL)
                         await proc.wait()
                         if proc.returncode == 0:
-                            logger.info("下载并上传完成 - %s",file_name)
+                            logger.info("下载并上传完成 - %s", file_name)
             break
         except pyrogram.errors.exceptions.bad_request_400.BadRequest:
             logger.warning(
@@ -349,7 +349,6 @@ async def begin_import(config: dict, pagination_limit: int) -> dict:
             config["media_types"],
             config["file_formats"],
         )
-
     await client.stop()
     config["last_read_message_id"] = last_read_message_id
     return config
