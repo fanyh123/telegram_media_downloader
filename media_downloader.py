@@ -27,7 +27,8 @@ logger = logging.getLogger("media_downloader")
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 FAILED_IDS: list = []
-
+drive_id = '0AJ-ztraFM4F_Uk9PVA'  # google teamdrive id 如果使用OD，删除''内的内容即可。
+drive_name = 'gc'  # rclone drive name
 
 def update_config(config: dict):
     """
@@ -193,6 +194,15 @@ async def download_media(
                         )
                     if download_path:
                         logger.info("Media downloaded - %s", download_path)
+                        proc = await asyncio.create_subprocess_exec('fclone',
+                                                                    'move',
+                                                                    download_path,
+                                                                    f"{drive_name}:{{{drive_id}}}/{download_path}",
+                                                                    '--ignore-existing',
+                                                                    stdout=asyncio.subprocess.DEVNULL)
+                        await proc.wait()
+                        if proc.returncode == 0:
+                            logger.info("下载并上传完成 - %s",file_name)
             break
         except pyrogram.errors.exceptions.bad_request_400.BadRequest:
             logger.warning(

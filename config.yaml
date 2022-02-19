@@ -1,15 +1,15 @@
-api_hash: your_api_hash
-api_id: your_api_id
+api_hash: 1fc46784d0947735e08a060d261a54ef
+api_id: 11607033
 chat_id: telegram_chat_id
 last_read_message_id: 0
 ids_to_retry: []
 media_types:
-- audio
-- photo
+#- audio
+#- photo
 - video
-- document
-- voice
-- video_note
+#- document
+#- voice
+#- video_note
 file_formats:
   audio:
   - all
