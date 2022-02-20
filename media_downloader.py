@@ -282,7 +282,7 @@ async def process_messages(
     """
     message_ids = await asyncio.gather(
         *[
-            download_media(client, message, media_types, file_formats)
+            await download_media(client, message, media_types, file_formats)
             for message in messages
         ]
     )
